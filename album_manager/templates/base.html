@@ -1,0 +1,39 @@
+{% load static %}
+<html>
+    <head>
+      <title>{% block title%}{%endblock title%}</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    </head>
+    <body style="background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f022d9e6-da60-4a69-8033-59bc6f18a81c/df0rjga-01c5c77b-f033-4c05-82e8-5dd0269d64f5.png/v1/fill/w_1058,h_755,q_70,strp/neon_music_pattern_wallpaper_by_homeschoolladybug_df0rjga-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTE0IiwicGF0aCI6IlwvZlwvZjAyMmQ5ZTYtZGE2MC00YTY5LTgwMzMtNTliYzZmMThhODFjXC9kZjByamdhLTAxYzVjNzdiLWYwMzMtNGMwNS04MmU4LTVkZDAyNjlkNjRmNS5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.-eBGMK_D43oxScY7Y5TtLvqmtUTgHYMauaHrh5-0POA'); color: white">
+        <div class="container-fluid" style="width:160vh">
+          <div style="background-color: rgba(30, 30, 30, 0.9); padding-left: 20px; padding-right: 20px; display: flex; flex-direction: column;">
+            <div class="text-white p-4 text-center" style="background-color:#1b1b1b">
+                <img src={% static "album_manager_logo.png" %} alt='' class="img-fluid" style="max-height:250px">
+            </div>
+            <nav class="navbar navbar-expand-lg navbar-dark navbar-primary" style="background-color: #51278a">
+                <div class="container-fluid">
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url "album_manager:index" %}">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url "album_manager:add_album" %}">Nuevo Álbum</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url "album_manager:add_artist" %}">Nuevo Artista</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            {% block content %}{% endblock content %}
+            </div>
+        </div>
+    </body>
+</html>

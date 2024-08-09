@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Álbum{% endblock title %}
+{% block content %}
+<div class="card mt-4 mb-4 p-2 border border-secondary" style="width: 23rem; color: white; display: block; margin-left: auto; margin-right: auto; background-color: #1b1b1b">
+    <img src="{{ album.cover.url }}" class="card-img-top" alt=" {{ album }} " style="border-radius: 4px; background-color: white; object-fit:cover; aspect-ratio: 1 / 1; object-position: 50% 0;">
+    <div class="card-body">
+    <h4 class="card-title" style="color:white">Características</h4>
+    </div>
+    <ul class="list-group list-group-flush" style="border-radius: 4px;">
+    <li class="list-group-item" style="background-color: #51278a; color:white"><strong>Título:</strong> {{ album.title }}</li>
+    <li class="list-group-item" style="background-color: #51278a; color:white"><strong>Año de Lanzamiento:</strong> {{ album.year }}</li>
+    <li class="list-group-item" style="background-color: #51278a; color:white"><strong>Género:</strong> {{ album.genre }}</li>
+    <li class="list-group-item" style="background-color: #51278a; color:white"><strong>Artista:</strong> {{ album.artist }}</li>
+    </ul>
+</div>
+{% endblock content %}
