@@ -1,7 +1,7 @@
 from django import forms
 from .models import *
 
-class AlbumForm(forms.ModelForm):
+class CategoryForm(forms.ModelForm):
     class Meta:
         model = Album
         fields = '__all__'
@@ -13,7 +13,25 @@ class AlbumForm(forms.ModelForm):
             'cover': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
 
-class ArtistForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Artist
+        fields = '__all__'
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'country': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+class ClientForm(forms.ModelForm):
+    class Meta:
+        model = Artist
+        fields = '__all__'
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'country': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+class PurchaseForm(forms.ModelForm):
     class Meta:
         model = Artist
         fields = '__all__'
