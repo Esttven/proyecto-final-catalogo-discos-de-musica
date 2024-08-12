@@ -18,6 +18,4 @@ urlpatterns = [
     path("delete_client/<int:id>/", views.delete_client, name='delete_client'),
     path("purchase/<int:purchase_id>/", views.purchase, name="purchase"),
     path("add_purchase/", views.add_purchase, name='add_purchase'),
-    path("edit_purchase/<int:id>/", views.edit_purchase, name='edit_purchase'),
-    path("delete_purchase/<int:id>/", views.delete_purchase, name='delete_purchase'),
 ]
