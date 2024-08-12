@@ -28,7 +28,7 @@ class ClientForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'country': forms.TextInput(attrs={'class': 'form-control'}),
             'age': forms.NumberInput(attrs={'class': 'form-control'}),
-            'email': forms.EmailField(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
         }
 
 class PurchaseForm(forms.ModelForm):
@@ -38,6 +38,6 @@ class PurchaseForm(forms.ModelForm):
         widgets = {
             'client': forms.Select(attrs={'class': 'form-control'}),
             'product': forms.Select(attrs={'class': 'form-control'}),
-            'purchase_date': forms.NumberInput(attrs={'class': 'form-control'}),
-            'total': forms.EmailField(attrs={'class': 'form-control'}),
+            'purchase_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'total': forms.DecimalField(attrs={'class': 'form-control'}),
         }
