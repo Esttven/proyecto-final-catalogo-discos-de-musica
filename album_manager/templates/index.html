@@ -2,67 +2,48 @@
 {% block title %}Discos{% endblock title %}
 {% block content %}
 <div class="shadow p-3 mb-5 rounded mt-5" style="background-color: #51278a">
-    <h3>Álbumes</h3>
+    <h3>Inicio</h3>
 </div>
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    {% for album in albums %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
     <div class="col">
-        <div class="card mb-4 p-3 border border-secondary" style="max-width: 49vh; color: white; background-color: #1b1b1b">
-            <div class="d-flex justify-content-center align-items-center">
-                <img src="{{ album.cover.url }}" alt="{{ album }}" class="img-thumbnail" style="background-color:white; object-fit:cover; aspect-ratio: 1 / 1; width: 100%">
-            </div>
-            <div class="card-body mt-n2"></div>
-            <h4 class="card-title">{{ album }}</h4>
-            <hr class="border border-white border-2">
-            <p class="card-text">
-                <strong>Artista:</strong> {{ album.artist }} <br>
-                <strong>Año:</strong> {{ album.year }}
-            </p>
-            <div class="btn-group" role="group">
-                <a href="album/{{ album.id }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Detalles">
-                    <i class="fa-solid fa-eye"></i>
-                </a>
-                <a href="edit_album/{{ album.id }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
-                    <i class="fa-solid fa-pencil"></i>
-                </a>
-                <a href="delete_album/{{ album.id }}" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
-                    <i class="fa-solid fa-trash-can"></i>
-                </a>
-
+        <div class="card text-bg-dark" style="height:150px">
+            <img src="..." class="card-img" alt="...">
+            <div class="card-img-overlay">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small>Last updated 3 mins ago</small></p>
             </div>
         </div>
     </div>
-    {% endfor %}
-</div>
-<div class="shadow p-3 mb-5 rounded mt-4" style="background-color: #51278a">
-    <h3>Artistas</h3>
-</div>
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    {% for artist in artists %}
     <div class="col">
-        <div class="card mb-3 p-3 border border-secondary" style="max-width: 49vh; color:white; background-color: #1b1b1b">
-            <div class="row g-0">
-                <div class="col">
-                    <h4 class="card-title mt-2">{{ artist }}</h4>
-                    <hr class="border border-white border-2">
-                    <p class="card-text">
-                        <strong>País:</strong> {{ artist.country }}
-                    </p>
-                    <div class="btn-group" role="group" style="width: 100%">
-                        <a href="artist/{{ artist.id }}" class="btn btn-primary" data-bs-toggle="tooltip" title="Detalles">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a href="edit_artist/{{ artist.id }}" class="btn btn-primary" data-bs-toggle="tooltip" title="Editar" >
-                            <i class="fa-solid fa-pencil"></i>
-                        </a>
-                        <a href="delete_artist/{{ artist.id }}" class="btn btn-danger" data-bs-toggle="tooltip" title="Eliminar">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </a>
-                    </div>
-                </div>
+        <div class="card text-bg-dark">
+            <img src="..." class="card-img" alt="...">
+            <div class="card-img-overlay">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small>Last updated 3 mins ago</small></p>
             </div>
         </div>
-    </div>  
-    {% endfor %}
-</div>
+    </div>
+    <div class="col">
+        <div class="card text-bg-dark">
+            <img src="..." class="card-img" alt="...">
+            <div class="card-img-overlay">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small>Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card text-bg-dark">
+            <img src="..." class="card-img" alt="...">
+            <div class="card-img-overlay">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small>Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+  </div>
 {% endblock content %}
