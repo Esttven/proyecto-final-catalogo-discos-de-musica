@@ -39,12 +39,12 @@ def add_category(request):
 def edit_category(request, id):
     category = get_object_or_404(Category, pk = id)
     if request.method == 'POST':
-        form = CategoryForm(request.POST, request.FILES, instance=album)
+        form = CategoryForm(request.POST, request.FILES, instance=category)
         if form.is_valid():
             form.save()
             return redirect('album_manager:index')
     else:
-        form = CategoryForm(instance=album)
+        form = CategoryForm(instance=category)
     return render(request, 'category_form.html', {'form': form})
 
 def delete_category(request, id):
@@ -86,54 +86,54 @@ def delete_product(request, id):
     product.delete()
     return redirect('album_manager:index') 
 #client
-def album(request, album_id):
-    album = Album.objects.get(id=album_id)
-    template = loader.get_template('display_album.html')
+def client(request, client_id):
+    client = Client.objects.get(id=client_id)
+    template = loader.get_template('display_client.html')
     context = {
-        'album': album
+        'client': client
     }
     return HttpResponse(template.render(context, request))
 
-def add_album(request):
+def add_client(request):
     if request.method == 'POST':
-        form = AlbumForm(request.POST, request.FILES)
+        form = ClientForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('album_manager:index')
     else:
-        form = AlbumForm()
-    return render(request, 'album_form.html', {'form': form})
+        form = ClientForm()
+    return render(request, 'aclient_form.html', {'form': form})
 
-def edit_album(request, id):
-    album = get_object_or_404(Album, pk = id)
+def edit_client(request, id):
+    client = get_object_or_404(Client, pk = id)
     if request.method == 'POST':
-        form = AlbumForm(request.POST, request.FILES, instance=album)
+        form = ClientForm(request.POST, request.FILES, instance=client)
         if form.is_valid():
             form.save()
             return redirect('album_manager:index')
     else:
-        form = AlbumForm(instance=album)
-    return render(request, 'album_form.html', {'form': form})
+        form = ClientForm(instance=client)
+    return render(request, 'client_form.html', {'form': form})
 
-def delete_album(request, id):
-    album = get_object_or_404(Album, pk=id)
-    album.delete()
+def delete_client(request, id):
+    client = get_object_or_404(Client, pk=id)
+    client.delete()
     return redirect('album_manager:index')
 #purchase
-def purchase(request, product_id):
-    product = product.objects.get(id=product_id)
-    template = loader.get_template('display_product.html')
+def purchase(request, purchase_id):
+    purchase = Purchase.objects.get(id=purchase_id)
+    template = loader.get_template('display_purchase.html')
     context = {
-        'product': product
+        'purchase': purchase
     }
     return HttpResponse(template.render(context, request))
 
 def add_product(request):
     if request.method == 'POST':
-        form = productForm(request.POST, request.FILES)
+        form = PurchaseForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('album_manager:index')
     else:
-        form = productForm()
-    return render(request, 'product_form.html', {'form': form})
+        form = PurchaseForm()
+    return render(request, 'purchase_form.html', {'form': form})
