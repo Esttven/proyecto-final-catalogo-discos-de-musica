@@ -39,5 +39,5 @@ class PurchaseForm(forms.ModelForm):
             'client': forms.Select(attrs={'class': 'form-control'}),
             'product': forms.Select(attrs={'class': 'form-control'}),
             'purchase_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'total': forms.DecimalField(attrs={'class': 'form-control'}),
+            'total': forms.NumberInput(attrs={'class': 'form-control'}),
         }
