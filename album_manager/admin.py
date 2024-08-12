@@ -1,11 +1,18 @@
 from django.contrib import admin
 from .models import *
 
-# Register your models here.
-@admin.register(Album)
-class AlbumAdmin(admin.ModelAdmin):
+@admin.register(Category)
+class CategoryAdmin(admin.ModelCategory):
     pass
 
-@admin.register(Artist)
-class ArtistAdmin(admin.ModelAdmin):
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Client)
+class ClientAdmin(admin.ModelClient):
+    pass
+
+@admin.register(Purchase)
+class PurchaseAdmin(admin.ModelPurchase):
     pass
