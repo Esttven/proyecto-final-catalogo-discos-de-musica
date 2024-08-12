@@ -3,7 +3,7 @@ from . import views
 
 app_name = 'album_manager'
 urlpatterns = [
-    path("", views.indeclient, name="indeclient"),
+    path("", views.index, name="index"),
     path("category/<int:category_id>/", views.category, name="category"),
     path("add_category/", views.add_category, name='add_category'),
     path("edit_category/<int:id>/", views.edit_category, name='edit_category'),
