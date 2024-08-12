@@ -137,19 +137,3 @@ def add_purchase(request):
     else:
         form = PurchaseForm()
     return render(request, 'purchase_form.html', {'form': form})
-
-def edit_purchase(request, id):
-    purchase = get_object_or_404(Purchase, pk = id)
-    if request.method == 'POST':
-        form = PurchaseForm(request.POST, request.FILES, instance=purchase)
-        if form.is_valid():
-            form.save()
-            return redirect('album_manager:index')
-    else:
-        form = PurchaseForm(instance=purchase)
-    return render(request, 'purchase_form.html', {'form': form})
-
-def delete_purchase(request, id):
-    purchase = get_object_or_404(Purchase, pk=id)
-    purchase.delete()
-    return redirect('album_manager:index')
