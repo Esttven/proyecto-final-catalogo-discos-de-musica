@@ -128,7 +128,7 @@ def purchase(request, purchase_id):
     }
     return HttpResponse(template.render(context, request))
 
-def add_product(request):
+def add_purchase(request):
     if request.method == 'POST':
         form = PurchaseForm(request.POST, request.FILES)
         if form.is_valid():
