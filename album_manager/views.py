@@ -3,6 +3,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.template import loader
 from .models import *
 from .forms import *
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     categories = Category.objects.order_by('category_name')
@@ -85,7 +87,9 @@ def delete_product(request, id):
     product = get_object_or_404(product, pk=id)
     product.delete()
     return redirect('album_manager:index') 
+
 #client
+@login_required
 def client(request, client_id):
     client = Client.objects.get(id=client_id)
     template = loader.get_template('display_client.html')
@@ -102,7 +106,7 @@ def add_client(request):
             return redirect('album_manager:index')
     else:
         form = ClientForm()
-    return render(request, 'aclient_form.html', {'form': form})
+    return render(request, 'client_form.html', {'form': form})
 
 def edit_client(request, id):
     client = get_object_or_404(Client, pk = id)
@@ -119,7 +123,9 @@ def delete_client(request, id):
     client = get_object_or_404(Client, pk=id)
     client.delete()
     return redirect('album_manager:index')
+
 #purchase
+@login_required
 def purchase(request, purchase_id):
     purchase = Purchase.objects.get(id=purchase_id)
     template = loader.get_template('display_purchase.html')
