@@ -11,7 +11,7 @@ class Disc(models.Model):
     disc_name = models.CharField(max_length=30, null=False)
     price = models.DecimalField(null=False, default=1, decimal_places=2, max_digits=6)
     artist = models.CharField(max_length=30, null=False)
-    genre = models.ForeignKey(Genre, related_name='disc', on_delete=models.CASCADE)
+    genre = models.ForeignKey(Genre, related_name='disc', on_delete=models.PROTECT)
     cover = models.ImageField(upload_to='cover_image')
 
     def __str__(self) -> str:
