@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 {% block title %}Compra{% endblock title %}
 {% block content %}
-<div class="card mt-4 mb-4 p-2 border border-secondary" style="width: 23rem; color: white; display: block; margin-left: auto; margin-right: auto; background-color: #1b1b1b">
-    <div class="card-body">
-    <h4 class="card-title">Características</h4>
+<div class="card mb-4 p-3 border border-secondary mx-auto" style="max-width: 49vh; color: white; background-color: #1b1b1b">
+    <div class="d-flex justify-content-center align-items-center" style="aspect-ratio: 1 / 1; width: 100%">
+        <i class="fa-solid fa-cart-shopping" style="font-size:300px"></i> 
     </div>
-    <ul class="list-group list-group-flush" style="border-radius: 4px">
-    <li class="list-group-item" style="background-color: #51278a; color:white"><strong>Nombre del cliente:</strong> {{ purchase.client }}</li>
-    <li class="list-group-item" style="background-color: #51278a; color:white"><strong>Producto:</strong> {{ purchase.product }}</li>
-    </ul>
+    <div class="card-body mt-n2">
+        <h4 class="card-title">Compra #{{ purchase.id }}</h4>
+        <hr class="border border-white border-2">
+        <p class="card-text fs-5">
+            <strong>Cliente:</strong> {{ purchase.client }} <br>
+            <strong>Productos:</strong> <br>
+            {% for disc in purchase.discs.all %}
+                {{ forloop.counter }}. {{ disc }}: ${{ disc.price }} <br>
+            {% endfor %}
+            <strong>Total:</strong> ${{ purchase.total }}
+        </p>
+    </div>
 </div>
 {% endblock content %}

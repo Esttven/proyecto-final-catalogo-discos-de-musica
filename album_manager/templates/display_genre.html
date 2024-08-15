@@ -1,12 +1,22 @@
 {% extends "base.html" %}
-{% block title %}Categoría{% endblock title %}
+{% block title %}Género{% endblock title %}
 {% block content %}
-<div class="card mt-4 mb-4 p-2 border border-secondary" style="width: 23rem; color: white; display: block; margin-left: auto; margin-right: auto; background-color: #1b1b1b">
-    <div class="card-body">
-    <h4 class="card-title" style="color:white">Características</h4>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for disc in discs %}
+    <div class="col">
+        <div class="card mb-4 p-3 border border-secondary" style="max-width: 49vh; color: white; background-color: #1b1b1b">
+            <div class="d-flex justify-content-center align-items-center">
+                <img src="{{ disc.cover.url }}" alt="{{ disc }}" class="img-thumbnail" style="background-color:white; object-fit:cover; aspect-ratio: 1 / 1; width: 100%">
+            </div>
+            <div class="card-body mt-n2"></div>
+            <h4 class="card-title">{{ disc.disc_name }}</h4>
+            <hr class="border border-white border-2">
+            <p class="card-text fs-5">
+                <strong>Artista:</strong> {{ disc.artist }} <br>
+                <strong>Precio:</strong> ${{ disc.price }}
+            </p>
+        </div>
     </div>
-    <ul class="list-group list-group-flush" style="border-radius: 4px;">
-    <li class="list-group-item" style="background-color: #51278a; color:white"><strong>Nombre de la categoría:</strong> {{ category.category_name }}</li>
-    </ul>
+    {% endfor %}
 </div>
 {% endblock content %}

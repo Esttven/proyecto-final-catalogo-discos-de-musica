@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Cliente{% endblock title %}
 {% block content %}
-<div class="card mt-4 mb-4 p-2 border border-secondary" style="width: 23rem; color: white; display: block; margin-left: auto; margin-right: auto; background-color: #1b1b1b">
-    <div class="card-body">
-    <h4 class="card-title">Características</h4>
+<div class="card mb-4 p-3 border border-secondary mx-auto" style="max-width: 49vh; color: white; background-color: #1b1b1b">
+    <div class="d-flex justify-content-center align-items-center" style="aspect-ratio: 1 / 1; width: 100%">
+        <i class="fa-solid fa-id-card" style="font-size:300px"></i> 
     </div>
-    <ul class="list-group list-group-flush" style="border-radius: 4px">
-    <li class="list-group-item" style="background-color: #51278a; color:white"><strong>Nombre:</strong> {{ client.name }}</li>
-    <li class="list-group-item" style="background-color: #51278a; color:white"><strong>País:</strong> {{ client.country }}</li>
-    </ul>
+    <div class="card-body mt-n2"></div>
+    <h4 class="card-title">{{ client.name }}</h4>
+    <hr class="border border-white border-2">
+    <p class="card-text fs-5">
+        <strong>País:</strong> {{ client.country }} <br>
+        <strong>Edad:</strong> {{ client.age }} <br>
+        <strong>Correo:</strong> {{ client.email }}
+    </p>
 </div>
 {% endblock content %}

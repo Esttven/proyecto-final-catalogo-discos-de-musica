@@ -1,14 +1,17 @@
 {% extends "base.html" %}
-{% block title %}Producto{% endblock title %}
+{% block title %}Disco{% endblock title %}
 {% block content %}
-<div class="card mt-4 mb-4 p-2 border border-secondary" style="width: 23rem; color: white; display: block; margin-left: auto; margin-right: auto; background-color: #1b1b1b">
-    <div class="card-body">
-    <h4 class="card-title">Características</h4>
+<div class="card mb-4 p-3 border border-secondary mx-auto" style="max-width: 49vh; color: white; background-color: #1b1b1b">
+    <div class="d-flex justify-content-center align-items-center">
+        <img src="{{ disc.cover.url }}" alt="{{ disc }}" class="img-thumbnail" style="background-color:white; object-fit:cover; aspect-ratio: 1 / 1; width: 100%">
     </div>
-    <ul class="list-group list-group-flush" style="border-radius: 4px">
-    <li class="list-group-item" style="background-color: #51278a; color:white"><strong>Nombre:</strong> {{ product.product_name }}</li>
-    <li class="list-group-item" style="background-color: #51278a; color:white"><strong>Precio:</strong> {{ product.price }}</li>
-    <li class="list-group-item" style="background-color: #51278a; color:white"><strong>Fabricante:</strong> {{ product.manufacturer }}</li>
-    </ul>
+    <div class="card-body mt-n2"></div>
+    <h4 class="card-title">{{ disc.disc_name }}</h4>
+    <hr class="border border-white border-2">
+    <p class="card-text fs-5">
+        <strong>Artista:</strong> {{ disc.artist }} <br>
+        <strong>Artista:</strong> {{ disc.genre }} <br>
+        <strong>Precio:</strong> ${{ disc.price }}
+    </p>
 </div>
 {% endblock content %}

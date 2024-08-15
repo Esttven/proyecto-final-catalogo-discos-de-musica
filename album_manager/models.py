@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 class Genre(models.Model):
     genre_name= models.CharField(max_length=30, null=False)
@@ -8,14 +9,16 @@ class Genre(models.Model):
     
 class Disc(models.Model):
     disc_name = models.CharField(max_length=30, null=False)
-    price = models.PositiveIntegerField(null=False, default=1)
+    price = models.DecimalField(null=False, default=1, decimal_places=2, max_digits=6)
     artist = models.CharField(max_length=30, null=False)
     genre = models.ForeignKey(Genre, related_name='disc', on_delete=models.CASCADE)
+    cover = models.ImageField(upload_to='cover_image')
 
     def __str__(self) -> str:
         return f"{self.disc_name} - {self.artist}"
     
 class Client(models.Model):
+    id = models.IntegerField(primary_key=True, editable=False, max_length=)
     name = models.CharField(max_length=30, null=False)
     country = models.CharField(max_length=30, null=False)
     age = models.PositiveIntegerField(null=False, default=1)
@@ -26,9 +29,9 @@ class Client(models.Model):
     
 class Purchase(models.Model):
     client = models.ForeignKey(Client, related_name='purchase', on_delete=models.CASCADE)
-    product = models.ManyToManyField(Disc, related_name='purchase')
-    purchase_date = models.DateField(auto_now_add=True)
-    total = models.DecimalField(max_digits=10, decimal_places=2)
+    discs = models.ManyToManyField(Disc, related_name='purchase')
+    purchase_date = models.DateField(default=datetime.date.today)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=1)
 
     def __str__(self) -> str:
-        return self.total
+        return f"{self.client} - {self.total}"

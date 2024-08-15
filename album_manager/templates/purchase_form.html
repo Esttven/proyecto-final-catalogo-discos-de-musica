@@ -1,9 +1,53 @@
 {% extends "base.html" %}
-{% block title %}Añadir Compra{% endblock title %}
+{% block title %}Nueva Compra{% endblock title %}
 {% block content %}
-    <form method="post" enctype="multipart/form-data">
+<div class="d-flex justify-content-center">
+    <h3>Nueva compra</h3>
+    <hr class="border border-secondary border-2 opacity-75 m-3">
+    <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <div class="mb-3">
+            {{ form.client.label_tag }}
+            {{ form.client }}
+        </div>
+        <div class="mb-3">
+            {{ form.purchase_date.label_tag }}
+            {{ form.purchase_date }}
+        </div>
+        <div class="mb-3">
+            {{ form.discs.label_tag }}
+            <table class="table table-striped table-hover table-dark mx-auto fs-4" style="max-width:1%;">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Artista</th>
+                        <th scope="col">Género</th>
+                        <th scope="col">Precio</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider fs-6">
+                {% for disc in discs %}
+                    <tr>
+                        <td class="align-middle">
+                            <div class="form-check">
+                                <input type="checkbox" name="discs" value="{{ disc.id }}" class="form-check-input">
+                            </div>
+                        </td>
+                        <td class="align-middle">{{ disc.disc_name }}</td>
+                        <td class="align-middle">{{ disc.artist }}</td>
+                        <td class="align-middle">{{ disc.genre }}</td>
+                        <td class="align-middle">${{ disc.price }}</td>
+                    </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No hay discos disponibles.</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>    
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+</div>
 {% endblock content %}
