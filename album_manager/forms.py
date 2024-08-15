@@ -1,23 +1,23 @@
 from django import forms
 from .models import *
 
-class CategoryForm(forms.ModelForm):
+class GenreForm(forms.ModelForm):
     class Meta:
-        model = Category
+        model = Genre
         fields = '__all__'
         widgets = {
-            'category_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'genre_name': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
-class ProductForm(forms.ModelForm):
+class DiscForm(forms.ModelForm):
     class Meta:
-        model = Product
+        model = Disc
         fields = '__all__'
         widgets = {
-            'product_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'disc_name': forms.TextInput(attrs={'class': 'form-control'}),
             'price': forms.NumberInput(attrs={'class': 'form-control'}),
             'manufacturer': forms.TextInput(attrs={'class': 'form-control'}),
-            'category_name': forms.Select(attrs={'class': 'form-control'}),
+            'Genre_name': forms.Select(attrs={'class': 'form-control'}),
         }
 
 class ClientForm(forms.ModelForm):
@@ -37,7 +37,7 @@ class PurchaseForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'client': forms.Select(attrs={'class': 'form-control'}),
-            'product': forms.Select(attrs={'class': 'form-control'}),
+            'Disc': forms.Select(attrs={'class': 'form-control'}),
             'purchase_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'total': forms.NumberInput(attrs={'class': 'form-control'}),
         }

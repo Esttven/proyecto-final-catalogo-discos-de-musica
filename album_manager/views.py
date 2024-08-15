@@ -7,88 +7,110 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    categories = Category.objects.order_by('category_name')
-    products = Product.objects.order_by('product_name')
+    discs = Disc.objects.order_by('disc_name')
     clients = Client.objects.order_by('name')
     purchases = Purchase.objects.order_by('total')
     template = loader.get_template('index.html')
     context = {
-        'categories': categories,
-        'products': products,
+        'genres': genres,
+        'discs': discs,
         'clients': clients,
         'purchases': purchases,
     }
     return HttpResponse(template.render(context, request))
-#category
-def category(request, category_id):
-    category = Category.objects.get(id=category_id)
-    template = loader.get_template('display_category.html')
+#genre
+def genres(request):
+    genres = Genre.objects.order_by('id')
+    template = loader.get_template('display_genres.html')
     context = {
-        'category': category
+        'genres': genres
     }
     return HttpResponse(template.render(context, request))
 
-def add_category(request):
+def genre(request, genre_id):
+    genre = Genre.objects.get(id=genre_id)
+    template = loader.get_template('display_genre.html')
+    context = {
+        'genre': genre
+    }
+    return HttpResponse(template.render(context, request))
+
+def add_genre(request):
     if request.method == 'POST':
-        form = CategoryForm(request.POST, request.FILES)
+        form = GenreForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('album_manager:index')
     else:
-        form = CategoryForm()
-    return render(request, 'category_form.html', {'form': form})
+        form = GenreForm()
+    return render(request, 'genre_form.html', {'form': form})
 
-def edit_category(request, id):
-    category = get_object_or_404(Category, pk = id)
+def edit_genre(request, id):
+    genre = get_object_or_404(Genre, pk = id)
     if request.method == 'POST':
-        form = CategoryForm(request.POST, request.FILES, instance=category)
+        form = GenreForm(request.POST, request.FILES, instance=genre)
         if form.is_valid():
             form.save()
             return redirect('album_manager:index')
     else:
-        form = CategoryForm(instance=category)
-    return render(request, 'category_form.html', {'form': form})
+        form = GenreForm(instance=genre)
+    return render(request, 'genre_form.html', {'form': form})
 
-def delete_category(request, id):
-    category = get_object_or_404(Category, pk=id)
-    category.delete()
+def delete_genre(request, id):
+    genre = get_object_or_404(Genre, pk=id)
+    genre.delete()
     return redirect('album_manager:index')
-#product
-def product(request, product_id):
-    product = Product.objects.get(id=product_id)
-    template = loader.get_template('display_product.html')
+
+#disc
+def disc(request, disc_id):
+    disc = Disc.objects.get(id=disc_id)
+    template = loader.get_template('display_disc.html')
     context = {
-        'product': product
+        'disc': disc
     }
     return HttpResponse(template.render(context, request))
 
-def add_product(request):
+def discs(request):
+    template = loader.get_template('display_discs.html')
+    context = {
+        'disc': disc
+    }
+    return HttpResponse(template.render(context, request))
+
+def add_disc(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
+        form = DiscForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('album_manager:index')
     else:
-        form = ProductForm()
-    return render(request, 'product_form.html', {'form': form})
+        form = DiscForm()
+    return render(request, 'disc_form.html', {'form': form})
 
-def edit_product(request, id):
-    product = get_object_or_404(product, pk = id)
+def edit_disc(request, id):
+    disc = get_object_or_404(Disc, pk = id)
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES, instance=product)
+        form = DiscForm(request.POST, request.FILES, instance=disc)
         if form.is_valid():
             form.save()
             return redirect('album_manager:index')
     else:
-        form = ProductForm(instance=product)
-    return render(request, 'product_form.html', {'form': form})
+        form = DiscForm(instance=disc)
+    return render(request, 'disc_form.html', {'form': form})
 
-def delete_product(request, id):
-    product = get_object_or_404(product, pk=id)
-    product.delete()
+def delete_disc(request, id):
+    disc = get_object_or_404(Disc, pk=id)
+    disc.delete()
     return redirect('album_manager:index') 
 
 #client
+def clients(request):
+    clients = Client.objects.order_by('id')
+    template = loader.get_template('display_clients.html')
+    context = {
+        'clients': clients
+    }
+    return HttpResponse(template.render(context, request))
 @login_required
 def client(request, client_id):
     client = Client.objects.get(id=client_id)
@@ -125,6 +147,13 @@ def delete_client(request, id):
     return redirect('album_manager:index')
 
 #purchase
+def purchases(request):
+    purchases = Purchase.objects.order_by('total')
+    template = loader.get_template('display_purchases.html')
+    context = {
+        'pruchases': purchases
+    }
+    return HttpResponse(template.render(context, request))
 @login_required
 def purchase(request, purchase_id):
     purchase = Purchase.objects.get(id=purchase_id)

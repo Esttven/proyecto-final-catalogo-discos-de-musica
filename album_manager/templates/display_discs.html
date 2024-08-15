@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Producto{% endblock title %}
+{% block content %}
+<div>
+    <table class="table table-striped table-hover table-dark mx-auto" style="max-width:500px; font-size: 30px;">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Fabricante</th>
+                <th scope="col">Categoría</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for producs in products %}
+            <tr>
+                <th scope="row">{{ product.id }}</th>
+                <td>{{ client.product_name }}</td>
+                <td>{{ client.price }}</td>
+                <td>{{ client.manufacturer }}</td>
+                <td>{{ client.category_name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

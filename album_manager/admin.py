@@ -1,11 +1,11 @@
 from django.contrib import admin
 from .models import *
 
-@admin.register(Category)
+@admin.register(Genre)
 class CategoryAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(Product)
+@admin.register(Disc)
 class ProductAdmin(admin.ModelAdmin):
     pass
 

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Compra{% endblock title %}
+{% block content %}
+<div>
+    <table class="table table-striped table-hover table-dark mx-auto" style="max-width:500px; font-size: 30px;">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for purchase in purchases %}
+            <tr>
+                <th scope="row">{{ purchase.id }}</th>
+                <td>{{ purchase.client }}</td>
+                <td>{{ purchase.product }}</td>
+                <td>{{ purchase.date }}</td>
+                <td>{{ purchase.total }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
