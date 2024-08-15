@@ -175,7 +175,7 @@ def purchase(request, purchase_id):
 
 @login_required
 def add_purchase(request):
-    discs = Disc.objects.all()
+    discs = Disc.objects.order_by('artist')
     if request.method == 'POST':
         form = PurchaseForm(request.POST)
         if form.is_valid():
