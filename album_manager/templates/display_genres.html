@@ -2,14 +2,16 @@
 {% block title %}Géneros{% endblock title %}
 {% block content %}
 <div class="flex mx-auto">
+  {% if user.is_authenticated %}
     <div class="dropdown ms-auto mb-3">
         <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Archivo
         </button>
         <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a class="dropdown-item d-flex" href="{% url 'album_manager:add_genre' %}">Nuevo registro<i class="fa-solid fa-plus my-auto ms-auto"></i></a></li>
+            <li><a class="dropdown-item d-flex" href="add">Nuevo registro<i class="fa-solid fa-plus my-auto ms-auto"></i></a></li>
         </ul>
     </div>
+  {% endif %}
     
     {% if messages %}
         <div class="alert alert-info">

@@ -12,7 +12,7 @@ def index(request):
     return render(request, 'index.html')
 #genre
 def genres(request):
-    genres = Genre.objects.order_by('id')
+    genres = Genre.objects.order_by('genre_name')
     template = loader.get_template('display_genres.html')
     context = {
         'genres': genres,
@@ -74,7 +74,7 @@ def disc(request, disc_id):
     return HttpResponse(template.render(context, request))
 
 def discs(request):
-    discs = Disc.objects.order_by('disc_name')
+    discs = Disc.objects.order_by('artist')
     template = loader.get_template('display_discs.html')
     context = {
         'discs': discs
