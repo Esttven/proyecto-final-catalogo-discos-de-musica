@@ -23,7 +23,7 @@
         </thead>
         <tbody class="table-group-divider fs-4">
         {% for client in clients %}
-            <tr>
+            <tr class='clickable-row' role="button" data-href="{{ client.id }}">
                 <th scope="row">{{ client.id }}</th>
                 <td><a href="{{ client.id }}" class="link-light link-underline-opacity-0">{{ client.name }}</a></td>
                 <td>{{ client.country }}</td>
@@ -59,4 +59,14 @@
         </tbody>
     </table>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var rows = document.querySelectorAll('.clickable-row');
+      rows.forEach(function(row) {
+          row.addEventListener('click', function() {
+              window.location.href = row.dataset.href;
+          });
+      });
+  });
+</script>
 {% endblock content %}

@@ -23,9 +23,9 @@
         </thead>
         <tbody class="table-group-divider fs-4">
         {% for disc in discs %}
-            <tr>
+            <tr class='clickable-row' role="button" data-href="{{ disc.id }}">
                 <th scope="row">{{ disc.id }}</th>
-                <td><a href="{{ disc.id }}" class="link-light link-underline-opacity-0">{{ disc.disc_name }}</a></td>
+                <td>{{ disc.disc_name }}</td>
                 <td>{{ disc.artist }}</td>
                 <td>{{ disc.genre }}</td>
                 <td>${{ disc.price }}</td>
@@ -59,4 +59,14 @@
         </tbody>
     </table>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var rows = document.querySelectorAll('.clickable-row');
+      rows.forEach(function(row) {
+          row.addEventListener('click', function() {
+              window.location.href = row.dataset.href;
+          });
+      });
+  });
+</script>
 {% endblock content %}

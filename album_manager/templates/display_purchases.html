@@ -23,8 +23,8 @@
         </thead>
         <tbody class="table-group-divider fs-4">
         {% for purchase in purchases %}
-            <tr>
-                <th scope="row"><a href="{{ purchase.id }}" class="link-light link-underline-opacity-0">{{ purchase.id }}</a></th>
+            <tr class='clickable-row' role="button" data-href="{{ purchase.id }}">
+                <th scope="row">{{ purchase.id }}</th>
                 <td>{{ purchase.client }}</td>
                 <td>
                     <div class="dropdown">
@@ -49,4 +49,14 @@
         </tbody>
     </table>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var rows = document.querySelectorAll('.clickable-row');
+        rows.forEach(function(row) {
+            row.addEventListener('click', function() {
+                window.location.href = row.dataset.href;
+            });
+        });
+    });
+</script>
 {% endblock content %}
