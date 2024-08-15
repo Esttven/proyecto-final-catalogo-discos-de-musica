@@ -1,10 +1,12 @@
 from django.http import HttpResponse
+from django.db.models import ProtectedError
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template import loader
 from .models import *
 from .forms import *
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 def index(request):
     return render(request, 'index.html')
@@ -13,7 +15,8 @@ def genres(request):
     genres = Genre.objects.order_by('id')
     template = loader.get_template('display_genres.html')
     context = {
-        'genres': genres
+        'genres': genres,
+        'messages': messages.get_messages(request),
     }
     return HttpResponse(template.render(context, request))
 
@@ -52,10 +55,15 @@ def edit_genre(request, id):
 
 @login_required
 def delete_genre(request, id):
-    genre = get_object_or_404(Genre, pk=id)
-    genre.delete()
+    if request.method == 'POST':
+        try:
+            genre = get_object_or_404(Genre, pk=id)
+            genre.delete()
+        except ProtectedError:
+            messages.error(request, "No se puede eliminar este género porque contiene discos dentro.")
+    
     return redirect('album_manager:genres')
-
+    
 #disc
 def disc(request, disc_id):
     disc = Disc.objects.get(id=disc_id)
@@ -100,7 +108,7 @@ def edit_disc(request, id):
 def delete_disc(request, id):
     disc = get_object_or_404(Disc, pk=id)
     disc.delete()
-    return redirect('album_manager:discs') 
+    return redirect('album_manager:discs')
 
 #client
 def clients(request):
