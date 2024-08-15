@@ -33,7 +33,7 @@
                         </span>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             {% for disc in purchase.discs.all %}
-                            <li><a class="dropdown-item">{{ disc }}: ${{ disc.price }}</a></li>
+                            <li><a class="dropdown-item" href="/disc/{{ disc.id }}">{{ disc }}: ${{ disc.price }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
