@@ -29,33 +29,33 @@
         </thead>
         <tbody class="table-group-divider fs-4">
         {% for genre in genres %}
-            <tr>
-                <th scope="row">{{ genre.id }}</th>
-                <td>{{ genre.genre_name }}</td>
-                <td>
-                  <a href="edit/{{ genre.id }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="fa-solid fa-trash text-danger"></i></a>
-                  <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="delete_modalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content bg-dark">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-4" id="delete_modalLabel">Eliminar género</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body fs-5">
-                          ¿Está seguro de que desea eliminar este género?
-                        </div>
-                        <div class="modal-footer">
-                          <a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
-                          <form method="post" action="{% url 'album_manager:delete_genre' genre.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Aceptar</button>
-                          </form>
-                        </div>
+          <tr class='clickable-row' role="button" data-href="{{ genre.id }}">
+              <th scope="row">{{ genre.id }}</th>
+              <td>{{ genre.genre_name }}</td>
+              <td class="no-click">
+                <a href="edit/{{ genre.id }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="fa-solid fa-trash text-danger"></i></a>
+                <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="delete_modalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content bg-dark">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-4" id="delete_modalLabel">Eliminar género</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body fs-5">
+                        ¿Está seguro de que desea eliminar este género?
+                      </div>
+                      <div class="modal-footer">
+                        <a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
+                        <form method="post" action="{% url 'album_manager:delete_genre' genre.id %}">
+                          {% csrf_token %}
+                          <button type="submit" class="btn btn-danger">Aceptar</button>
+                        </form>
                       </div>
                     </div>
                   </div>
-                </td>
+                </div>
+              </td>
             </tr>
         {% empty %}
         <tr>
