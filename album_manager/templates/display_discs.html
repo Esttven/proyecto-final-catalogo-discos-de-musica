@@ -59,18 +59,4 @@
         </tbody>
     </table>
 </div>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-      var rows = document.querySelectorAll('.clickable-row');
-      rows.forEach(function(row) {
-          row.addEventListener('click', function(event) {
-              if (event.target.closest('.no-click')) {
-                  event.stopPropagation();
-              } else {
-                  window.location.href = row.dataset.href;
-              }
-          });
-      });
-  });
-</script>
 {% endblock content %}

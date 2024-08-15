@@ -31,7 +31,7 @@
                     <tr>
                         <td class="align-middle">
                             <div class="form-check">
-                                <input type="checkbox" name="discs" value="{{ disc.id }}" class="form-check-input">
+                                <input type="checkbox" name="discs" value="{{ disc.id }}" class="form-check-input" data-price="{{ disc.price }}">
                             </div>
                         </td>
                         <td class="align-middle">{{ disc.disc_name }}</td>
@@ -47,7 +47,26 @@
                 </tbody>
             </table>
         </div>    
+        <div class="mb-3">
+            <label for="total">Total:</label>
+            <input class="form-control w-auto bg-dark text-white" type="text" id="total" name="total" readonly>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+<script>
+    $(document).ready(function() {
+        function updateTotal() {
+            var total = 0;
+            $('input[name="discs"]:checked').each(function() {
+                total += parseFloat($(this).data('price'));
+            });
+            $('#total').val('$' + total.toFixed(2));
+        }
+
+        $('input[name="discs"]').change(updateTotal);
+
+        updateTotal();
+    });
+</script>
 {% endblock content %}
