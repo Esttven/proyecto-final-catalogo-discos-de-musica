@@ -26,7 +26,7 @@
             <tr class='clickable-row' role="button" data-href="{{ purchase.id }}">
                 <th scope="row">{{ purchase.id }}</th>
                 <td>{{ purchase.client }}</td>
-                <td>
+                <td class="no-click">
                     <div class="dropdown">
                         <span class="dropdown-toggle" data-bs-toggle="dropdown">
                             Clic para ver
@@ -53,8 +53,12 @@
     document.addEventListener('DOMContentLoaded', function() {
         var rows = document.querySelectorAll('.clickable-row');
         rows.forEach(function(row) {
-            row.addEventListener('click', function() {
-                window.location.href = row.dataset.href;
+            row.addEventListener('click', function(event) {
+                if (event.target.closest('.no-click')) {
+                    event.stopPropagation();
+                } else {
+                    window.location.href = row.dataset.href;
+                }
             });
         });
     });
