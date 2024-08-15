@@ -18,7 +18,6 @@ class Disc(models.Model):
         return f"{self.disc_name} - {self.artist}"
     
 class Client(models.Model):
-    id = models.IntegerField(primary_key=True, editable=False, max_length=)
     name = models.CharField(max_length=30, null=False)
     country = models.CharField(max_length=30, null=False)
     age = models.PositiveIntegerField(null=False, default=1)
